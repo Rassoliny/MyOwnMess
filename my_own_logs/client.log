@@ -6,3 +6,5 @@
 2018-01-04 09:21:02,466 - INFO - args: (<client.User object at 0x11106ee10>, {'response': 200}) = {'response': 200} - translate_response - client
 2018-01-04 09:22:27,707 - INFO - args: (<client.User object at 0x11106ee10>,) = {'action': 'presence', 'time': 1515046947.7077398, 'account_name': 'G@'} - create_presence - client
 2018-01-04 09:22:27,729 - INFO - args: (<client.User object at 0x11106ee10>, {'response': 200}) = {'response': 200} - translate_response - client
+2018-01-04 12:07:15,594 - INFO - args: (<client.User object at 0x11106ee48>,) = {'action': 'presence', 'time': 1515056835.5948648, 'account_name': 'GuiGuest'} - create_presence - client
+2018-01-04 12:07:15,624 - INFO - args: (<client.User object at 0x11106ee48>, {'response': 200}) = {'response': 200} - translate_response - client
