@@ -6,36 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>452</width>
-    <height>371</height>
+    <width>643</width>
+    <height>553</height>
    </rect>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>134</red>
+        <green>153</green>
+        <blue>181</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>134</red>
+        <green>153</green>
+        <blue>181</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>134</red>
+        <green>153</green>
+        <blue>181</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>134</red>
+        <green>153</green>
+        <blue>181</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="windowTitle">
-   <string>Wavy Parrot</string>
+   <string>MyOwnMessenger</string>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../Downloads/icons8-parrot.png</normaloff>../../../../../Downloads/icons8-parrot.png</iconset>
+    <normaloff>icon.ico</normaloff>icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>221</width>
-      <height>51</height>
+      <x>460</x>
+      <y>300</y>
+      <width>151</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="title">
-     <string/>
+     <string>Change contact list</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <widget class="QTextEdit" name="textEditUsername">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
-       <width>121</width>
+       <y>30</y>
+       <width>131</width>
        <height>31</height>
       </rect>
      </property>
@@ -43,14 +110,14 @@
     <widget class="QPushButton" name="pushButtonAddContact">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>10</y>
-       <width>31</width>
+       <x>20</x>
+       <y>70</y>
+       <width>51</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string/>
+      <string>Add</string>
      </property>
      <property name="icon">
       <iconset>
@@ -60,14 +127,14 @@
     <widget class="QPushButton" name="pushButtonDelContect">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>10</y>
-       <width>31</width>
+       <x>90</x>
+       <y>70</y>
+       <width>51</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string/>
+      <string>RM</string>
      </property>
      <property name="icon">
       <iconset>
@@ -78,58 +145,110 @@
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>50</y>
-      <width>221</width>
-      <height>231</height>
+      <x>460</x>
+      <y>20</y>
+      <width>151</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="title">
-     <string>Контакты</string>
+     <string>Contact list</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
     </property>
     <widget class="QListWidget" name="listWidgetContacts">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>201</width>
-       <height>201</height>
+       <y>30</y>
+       <width>131</width>
+       <height>231</height>
       </rect>
      </property>
     </widget>
    </widget>
-   <widget class="QListWidget" name="listWidgetMessages">
+   <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>10</y>
-      <width>211</width>
-      <height>271</height>
+      <x>40</x>
+      <y>20</y>
+      <width>391</width>
+      <height>371</height>
      </rect>
     </property>
+    <property name="title">
+     <string>Chat</string>
+    </property>
+    <widget class="QListWidget" name="listWidgetMessages">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>371</width>
+       <height>321</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
-   <widget class="QTextEdit" name="textEditMessage">
+   <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>311</width>
-      <height>31</height>
+      <x>40</x>
+      <y>400</y>
+      <width>391</width>
+      <height>91</height>
      </rect>
     </property>
+    <property name="title">
+     <string>Enter your message</string>
+    </property>
+    <widget class="QTextEdit" name="textEditMessage">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>371</width>
+       <height>51</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="PushButtonSend">
+   <widget class="QGroupBox" name="groupBox_5">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>290</y>
-      <width>101</width>
-      <height>31</height>
+      <x>480</x>
+      <y>430</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Send</string>
+    <property name="title">
+     <string/>
     </property>
+    <widget class="QPushButton" name="PushButtonSend">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Send</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon.ico</normaloff>icon.ico</iconset>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -137,8 +256,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>452</width>
-     <height>18</height>
+     <width>643</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
