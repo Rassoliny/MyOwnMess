@@ -21,6 +21,8 @@ try:
     print(name)
 except IndexError:
     name = 'GuiGuest'
+    for params in sys.argv:
+        print(params)
 
 # Создаем приложение
 app = QtWidgets.QApplication(sys.argv)
@@ -153,7 +155,11 @@ window.PushButtonSend.clicked.connect(send_message)
 # quitAction.triggered.connect(app.quit)
 # window.listWidgetContacts.addAction(quitAction)
 
+
+
 # рисуем окно
 window.show()
 # точка запуска приложения
 sys.exit(app.exec_())
+
+
