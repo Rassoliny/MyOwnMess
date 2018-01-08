@@ -18,7 +18,6 @@ except ValueError:
     sys.exit(0)
 try:
     name = sys.argv[3]
-    print(name)
 except IndexError:
     name = 'Guest'
     for params in sys.argv:
@@ -47,16 +46,13 @@ def update_chat(data):
 def history():
     """Перенос текущего чата в окно истории"""
     try:
-        c =  str(window.listWidgetMessages.count())
-        print(c)
+        c = str(window.listWidgetMessages.count())
         s = int(c)
-        i = 0
         for i in range (0, s + 1):
             a = window.listWidgetMessages.takeItem(i)
             window.listWidgetHistory.addItem(a)
             a = window.listWidgetMessages.takeItem(i+1)
             window.listWidgetHistory.addItem(a)
-            #print('отработало {}'.format(i))        
     except Exception as e:
         print(e)
         
