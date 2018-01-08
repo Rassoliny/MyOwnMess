@@ -20,7 +20,7 @@ try:
     name = sys.argv[3]
     print(name)
 except IndexError:
-    name = 'GuiGuest'
+    name = 'Guest'
     for params in sys.argv:
         print(params)
 
@@ -34,11 +34,9 @@ client = User(name, addr, port)
 client.connect()
 listener = GuiReciever(client.sock, client.request_queue)
 
-
 @pyqtSlot(str)
 def update_chat(data):
-    ''' Отображение сообщения в истории
-    '''
+    """Отображение текущего чата"""
     try:
         msg = data
         window.listWidgetMessages.addItem(msg)
@@ -46,13 +44,25 @@ def update_chat(data):
         print(e)
 
 
+def history():
+    """Перенос текущего чата в окно истории"""
+    try:
+        c =  str(window.listWidgetMessages.count())
+        print(c)
+        s = int(c)
+        i = 0
+        for i in range (0, s + 1):
+            a = window.listWidgetMessages.takeItem(i)
+            window.listWidgetHistory.addItem(a)
+            a = window.listWidgetMessages.takeItem(i+1)
+            window.listWidgetHistory.addItem(a)
+            #print('отработало {}'.format(i))        
+    except Exception as e:
+        print(e)
+        
+
 # сигнал мы берем из нашего GuiReciever
 listener.gotData.connect(update_chat)
-
-# Используем QThread так рекомендуется, но можно и обычный
-# th_listen = threading.Thread(target=listener.poll)
-# th_listen.daemon = True
-# th_listen.start()
 th = QThread()
 listener.moveToThread(th)
 
@@ -65,7 +75,7 @@ contact_list = client.get_contacts()
 
 
 def load_contacts(contacts):
-    """загрузка контактов в список"""
+    """Загрузка списка контактов"""
     # чистим список
     window.listWidgetContacts.clear()
     # добавляем
@@ -105,17 +115,14 @@ def del_contact():
         # удаление контакта (отправляем запрос на сервер)
         client.del_contact(username)
         # удаляем контакт из QListWidget
-        # window.listWidgetContacts.removeItemWidget(current_item) - так не работает
-        # del current_item
-        # Так норм удаляется, может быть можно как то проще
         current_item = window.listWidgetContacts.takeItem(window.listWidgetContacts.row(current_item))
         del current_item
     except Exception as e:
         print(e)
 
 
-# отправка сообщения
 def send_message():
+    """Отправка сообщения"""
     text = window.textEditMessage.toPlainText()
     if text:
         # получаем выделенного пользователя
@@ -125,35 +132,31 @@ def send_message():
         # отправляем сообщение
         client.send_message(user_name, text)
         # будем выводить то что мы отправили в общем чате
-        msg = '{} >>> {}'.format(name, text)
+        msg = 'You >>> {} : {}'.format(user_name, text)
         window.listWidgetMessages.addItem(msg)
+        window.textEditMessage.clear()
 
 
-# связываем сигнал нажатия на кнопку и слот функцию удаления контакта
-window.pushButtonDelContect.clicked.connect(del_contact)
+# связываем кнопку send с функцией отправки
 window.PushButtonSend.clicked.connect(send_message)
 
-# def open_chat():
-#     """Открытие модального чата (модальное для демонстрации)"""
-#     # грузим QDialog чата
-#     dialog = uic.loadUi('chat.ui')
-#     # привязываем события модального окна (для демонстрации)
-#     dialog.pushOk.clicked.connect(dialog.accept)
-#     dialog.pushCancel.clicked.connect(dialog.reject)
-#     # запускаем в модальном режиме
-#     dialog.exec()
+def clean_workspace():
+    """Очистка окна текущего чата"""
+    history()
+    window.listWidgetMessages.clear()
 
 
-# Пока мы не можем передать элемент на который нажали - сделать в следующий раз через наследование
-# window.listWidgetContacts.itemDoubleClicked.connect(open_chat)
+# При нажатии на имя контакта в списке контактов сообщения из окна текущего чата переносятся в окно history
+window.listWidgetContacts.itemClicked.connect(clean_workspace)
 
-# Контекстное меню при нажатии правой кнопки мыши (пока тестовый вариант для демонстрации)
-# Создаем на листе
-# window.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
-# window.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
-# quitAction = QtWidgets.QAction("Quit", None)
-# quitAction.triggered.connect(app.quit)
-# window.listWidgetContacts.addAction(quitAction)
+# Удаление контакта из списка вызывается через контекстное меню
+# При нажатии правой кнопкой мыши на контакте появляется кнопка Remove
+window.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
+window.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
+removeAction = QtWidgets.QAction("Remove", None)
+removeAction.triggered.connect(del_contact)
+window.listWidgetContacts.addAction(removeAction)
+
 
 
 
