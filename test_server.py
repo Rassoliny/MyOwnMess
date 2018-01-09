@@ -9,9 +9,9 @@ class TestHandler:
         self.s = Handler()
 
     def test_presence_response(self):
-        # Нету ключа action
+        # Нет ключа action
         assert self.s.presence_response({'one': 'two', 'time': time.time()})['response'] == 400
-        # Нету ключа time
+        # Нет ключа time
         assert self.s.presence_response({'action': 'presence'})['response'] == 400
         # Ключ не presence
         assert self.s.presence_response({'action': 'test_action', 'time': 1000.10})['response'] == 400

@@ -34,12 +34,7 @@ class Handler:
         self.repo = Repo(session)
 
     def read_requests(self, r_clients, all_clients):
-        """
-        Чтение сообщений, которые будут посылать клиенты
-        :param r_clients: клиенты которые могут отправлять сообщения
-        :param all_clients: все клиенты
-        :return:
-        """
+        """Чтение сообщений"""
         # Список входящих сообщений
         messages = []
 
@@ -47,10 +42,6 @@ class Handler:
             try:
                 # Получаем входящие сообщения
                 message = get_message(sock)
-                # Добавляем их в список
-                # В идеале нам нужно сделать еще проверку, что сообщение нужного формата прежде чем его пересылать!
-                # Пока оставим как есть, этим займемся позже
-                # Домавляем пару: сообщение и сокет который его отправил
                 messages.append((message, sock))
             except:
                 print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
@@ -75,13 +66,6 @@ class Handler:
                     response = JimResponse(ACCEPTED, quantity=len(contacts))
                     # Отправляем
                     send_message(sock, response.to_dict())
-                    # в цикле по контактам шлем сообщения
-                    # отправляли в цикли и на клиенте иногда ловили ошибки
-                    # for contact in contacts:
-                    #     message = JimContactList(contact.Name)
-                    #     print(message.to_dict())
-                    #     send_message(sock, message.to_dict())
-                    # отправляем одним списком
                     contact_names = [contact.Name for contact in contacts]
                     message = JimContactList(contact_names)
                     send_message(sock, message.to_dict())
@@ -136,7 +120,7 @@ class Handler:
         :param presence_message: Словарь presence запроса
         :return: Словарь ответа
         """
-        # Делаем проверки
+        # Проверки
         try:
             presence = Jim.from_dict(presence_message)
             username = presence.account_name
@@ -157,12 +141,10 @@ class Handler:
 
 
 class Server:
-    """Клесс сервер"""
+    """Класс сервер"""
 
     def __init__(self, handler):
-        """
-        :param handler: обработчик событий
-        """
+        """обработчик событий"""
         self.handler = handler
         # список клиентов
         self.clients = []

@@ -79,26 +79,11 @@ class User:
         # запрос на список контактов
         jimmessage = JimGetContacts(self.login)
         # отправляем
-
         send_message(self.sock, jimmessage.to_dict())
-        # получаем ответ
-        # response = get_message(self.sock)
         # ответ получаем из очереди
         response = self.request_queue.get()
-        # приводим ответ к ответу сервера
-        #response = Jim.from_dict(response)
-        # там лежит количество контактов
+        # количество контактов
         quantity = response.quantity
-        # делаем цикл и получаем каждый контакт по отдельности
-        # print('У вас ', quantity, 'друзей')
-        # print('Вот они:')
-        # получали в цикле и ловили ошибки иногда
-        # for i in range(quantity):
-        #     message = get_message(service)
-        #     message = Jim.from_dict(message)
-        #     print(message.user_id)
-        # получаем имена одним списком
-        # message = get_message(self.sock)
         # имена читаем из очереди
         message = self.request_queue.get()
         # возвращаем список имен
@@ -109,8 +94,6 @@ class User:
         # будем добавлять контакт
         message = JimAddContact(self.login, username)
         send_message(self.sock, message.to_dict())
-        # получаем ответ от сервера
-        # response = get_message(self.sock)
         # получаем ответ из очереди
         response = self.request_queue.get()
         return response
@@ -119,8 +102,6 @@ class User:
         # будем удалять контакт
         message = JimDelContact(self.login, username)
         send_message(self.sock, message.to_dict())
-        # получаем ответ от сервера
-        #response = get_message(self.sock)
         # получаем ответ из очереди
         response = self.request_queue.get()
         return response
@@ -130,38 +111,3 @@ class User:
         message = JimMessage(to, self.login, text)
         # отправляем
         send_message(self.sock, message.to_dict())
-
-    # def write_messages(self):
-    #     """Клиент пишет сообщение в бесконечном цикле"""
-    #     while True:
-    #         # Вводим сообщение с клавиатуры
-    #         text = input(':)>')
-    #         if text.startswith('list'):
-    #             message = self.get_contacts()
-    #             for name in message:
-    #                 print(name)
-    #         else:
-    #             command, param = text.split()
-    #             if command == 'add':
-    #                 response = self.add_contact(param)
-    #                 if response.response == ACCEPTED:
-    #                     print('Контакт успешно добавлен')
-    #                 else:
-    #                     print(response.error)
-    #             elif command == 'del':
-    #                 response = self.del_contact(param)
-    #                 if response.response == ACCEPTED:
-    #                     print('Контакт успешно удален')
-    #                 else:
-    #                     print(response.error)
-
-                        # # Создаем jim сообщение
-                        # message = self.create_message('#all', text)
-                        # # отправляем на сервер
-                        # send_message(service, message)
-
-
-# if __name__ == '__main__':
-#     client = User('Leo')
-#     client.connect()
-#     client.write_messages()

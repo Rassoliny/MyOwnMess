@@ -19,7 +19,7 @@ class TestUser:
         # берем разницу во времени
         assert abs(message['time'] - time.time()) < 0.1
         assert message["account_name"] == 'Leo'
-        # с именем
+        # с параметром имя
         message = self.user.create_presence()
         assert message["account_name"] == 'Leo'
         # неверный тип

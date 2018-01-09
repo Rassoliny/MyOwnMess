@@ -10,7 +10,7 @@ def authentification():
     login = login_window.LoginPlainTextEdit.toPlainText()
     password = login_window.PasswordPlainTextEdit.toPlainText()
     print(login, password)
-    subprocess.Popen('python3.6 ~/MyOwnMess/client_gui.py localhost 7777 {}'.format(login), shell=True)
+    subprocess.Popen('python3.6 client_gui.py localhost 7777 {}'.format(login), shell=True)
     exit(0)
     return (login, password)
 
