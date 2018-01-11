@@ -5,36 +5,73 @@ from client import User
 from handlers import GuiReciever
 import client_view
 
-# Получаем параметры скрипта
-try:
-    addr = sys.argv[1]
-except IndexError:
-    addr = 'localhost'
-try:
-    port = int(sys.argv[2])
-except IndexError:
-    port = 7777
-except ValueError:
-    print('Порт должен быть целым числом')
-    sys.exit(0)
-try:
-    name = sys.argv[3]
-except IndexError:
-    name = 'Guest'
-    for params in sys.argv:
-        print(params)
 
-# Создаем приложение
-app = QtWidgets.QApplication(sys.argv)
-# грузим главную форму
-window = QtWidgets.QMainWindow()
-ui = client_view.Ui_MainWindow()
-ui.setupUi(window)
-# создаем клиента на запись
-client = User(name, addr, port)
-# получаем список контактов с сервера, которые лежат у нас - не надежные
-client.connect()
-listener = GuiReciever(client.sock, client.request_queue)
+def main():
+    # Получаем параметры скрипта
+    try:
+        addr = sys.argv[1]
+    except IndexError:
+        addr = 'localhost'
+    try:
+        port = int(sys.argv[2])
+    except IndexError:
+        port = 7777
+    except ValueError:
+        print('Порт должен быть целым числом')
+        sys.exit(0)
+    try:
+        name = sys.argv[3]
+    except IndexError:
+        name = 'Guest'
+        for params in sys.argv:
+            print(params)
+    
+    # создаем клиента на запись
+    client = User(name, addr, port)
+    # получаем список контактов с сервера, которые лежат у нас - не надежные
+    client.connect()
+    listener = GuiReciever(client.sock, client.request_queue)
+
+    # сигнал мы берем из нашего GuiReciever
+    listener.gotData.connect(update_chat)
+    th = QThread()
+    listener.moveToThread(th)
+
+    # # ---------- Важная часть - связывание сигналов и слотов ----------
+    # При запуске потока будет вызван метод search_text
+    th.started.connect(listener.poll)
+    th.start()
+
+    contact_list = client.get_contacts()
+
+    # грузим контакты в список сразу при запуске приложения
+    load_contacts(contact_list)
+
+    # Связываем сигнал нажатия кнопки добавить со слотом функцией добавить контакт
+    ui.pushButtonAddContact.clicked.connect(add_contact)
+
+    # связываем кнопку send с функцией отправки
+    ui.PushButtonSend.clicked.connect(send_message)
+
+    # При нажатии на имя контакта в списке контактов сообщения из окна текущего чата переносятся в окно history
+    ui.listWidgetContacts.itemClicked.connect(clean_workspace)
+
+    # Удаление контакта из списка вызывается через контекстное меню
+    # При нажатии правой кнопкой мыши на контакте появляется кнопка Remove
+    ui.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
+    ui.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
+    removeAction = QtWidgets.QAction("Remove", None)
+    removeAction.triggered.connect(del_contact)
+    ui.listWidgetContacts.addAction(removeAction)
+
+    # рисуем окно
+    window.show()
+    # точка запуска приложения
+    sys.exit(app.exec_())
+
+
+    
+
 
 @pyqtSlot(str)
 def update_chat(data):
@@ -60,19 +97,6 @@ def history():
         print(e)
         
 
-# сигнал мы берем из нашего GuiReciever
-listener.gotData.connect(update_chat)
-th = QThread()
-listener.moveToThread(th)
-
-# # ---------- Важная часть - связывание сигналов и слотов ----------
-# При запуске потока будет вызван метод search_text
-th.started.connect(listener.poll)
-th.start()
-
-contact_list = client.get_contacts()
-
-
 def load_contacts(contacts):
     """Загрузка списка контактов"""
     # чистим список
@@ -80,10 +104,6 @@ def load_contacts(contacts):
     # добавляем
     for contact in contacts:
         ui.listWidgetContacts.addItem(contact)
-
-
-# грузим контакты в список сразу при запуске приложения
-load_contacts(contact_list)
 
 
 def add_contact():
@@ -100,8 +120,7 @@ def add_contact():
         print(e)
 
 
-# Связываем сигнал нажатия кнопки добавить со слотом функцией добавить контакт
-ui.pushButtonAddContact.clicked.connect(add_contact)
+
 
 
 def del_contact():
@@ -136,8 +155,6 @@ def send_message():
         ui.textEditMessage.clear()
 
 
-# связываем кнопку send с функцией отправки
-ui.PushButtonSend.clicked.connect(send_message)
 
 def clean_workspace():
     """Очистка окна текущего чата"""
@@ -145,23 +162,15 @@ def clean_workspace():
     ui.listWidgetMessages.clear()
 
 
-# При нажатии на имя контакта в списке контактов сообщения из окна текущего чата переносятся в окно history
-ui.listWidgetContacts.itemClicked.connect(clean_workspace)
 
-# Удаление контакта из списка вызывается через контекстное меню
-# При нажатии правой кнопкой мыши на контакте появляется кнопка Remove
-ui.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
-ui.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
-removeAction = QtWidgets.QAction("Remove", None)
-removeAction.triggered.connect(del_contact)
-ui.listWidgetContacts.addAction(removeAction)
+if __name__ == "__main__":
+    # Создаем приложение
+    app = QtWidgets.QApplication(sys.argv)
+    # грузим главную форму
+    window = QtWidgets.QMainWindow()
+    ui = client_view.Ui_MainWindow()
+    ui.setupUi(window)
+    main()
 
-
-
-
-# рисуем окно
-window.show()
-# точка запуска приложения
-sys.exit(app.exec_())
 
 

@@ -6,5 +6,5 @@ setup(name = "myownmessenger",
       author = "Rassoliny",
       author_email = "dimo120@yandex.ru",
       url = "https://github.com/Rassoliny/MyOwnMess",
-      packages=["myownmess_server", "my_own_jim", "my_own_repo", "my_own_logs", "myownmess_client"]
+      packages=["my_own_server", "my_own_jim", "my_own_repo", "my_own_logs", "my_own_client", "my_own_auth"]
       )
