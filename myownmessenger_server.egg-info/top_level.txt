@@ -1,4 +1,0 @@
-my_own_jim
-my_own_logs
-my_own_repo
-myownmess_server

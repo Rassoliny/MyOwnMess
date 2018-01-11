@@ -1,3 +1,4 @@
 my_own_repo/__pycache__
 *.log
 server.db
+build
