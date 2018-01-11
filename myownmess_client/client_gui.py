@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt, QThread, pyqtSlot
 from client import User
 from handlers import GuiReciever
+import client_view
 
 # Получаем параметры скрипта
 try:
@@ -26,7 +27,9 @@ except IndexError:
 # Создаем приложение
 app = QtWidgets.QApplication(sys.argv)
 # грузим главную форму
-window = uic.loadUi('main.ui')
+window = QtWidgets.QMainWindow()
+ui = client_view.Ui_MainWindow()
+ui.setupUi(window)
 # создаем клиента на запись
 client = User(name, addr, port)
 # получаем список контактов с сервера, которые лежат у нас - не надежные
@@ -38,7 +41,7 @@ def update_chat(data):
     """Отображение текущего чата"""
     try:
         msg = data
-        window.listWidgetMessages.addItem(msg)
+        ui.listWidgetMessages.addItem(msg)
     except Exception as e:
         print(e)
 
@@ -46,13 +49,13 @@ def update_chat(data):
 def history():
     """Перенос текущего чата в окно истории"""
     try:
-        c = str(window.listWidgetMessages.count())
+        c = str(ui.listWidgetMessages.count())
         s = int(c)
         for i in range (0, s + 1):
-            a = window.listWidgetMessages.takeItem(i)
-            window.listWidgetHistory.addItem(a)
-            a = window.listWidgetMessages.takeItem(i+1)
-            window.listWidgetHistory.addItem(a)
+            a = ui.listWidgetMessages.takeItem(i)
+            ui.listWidgetHistory.addItem(a)
+            a = ui.listWidgetMessages.takeItem(i+1)
+            ui.listWidgetHistory.addItem(a)
     except Exception as e:
         print(e)
         
@@ -73,10 +76,10 @@ contact_list = client.get_contacts()
 def load_contacts(contacts):
     """Загрузка списка контактов"""
     # чистим список
-    window.listWidgetContacts.clear()
+    ui.listWidgetContacts.clear()
     # добавляем
     for contact in contacts:
-        window.listWidgetContacts.addItem(contact)
+        ui.listWidgetContacts.addItem(contact)
 
 
 # грузим контакты в список сразу при запуске приложения
@@ -87,31 +90,31 @@ def add_contact():
     """Добавление контакта"""
     # Получаем имя из QTextEdit
     try:
-        username = window.textEditUsername.toPlainText()
+        username = ui.textEditUsername.toPlainText()
         if username:
             # добавляем контакт - шлем запрос на сервер ...
             client.add_contact(username)
             # добавляем имя в QListWidget
-            window.listWidgetContacts.addItem(username)
+            ui.listWidgetContacts.addItem(username)
     except Exception as e:
         print(e)
 
 
 # Связываем сигнал нажатия кнопки добавить со слотом функцией добавить контакт
-window.pushButtonAddContact.clicked.connect(add_contact)
+ui.pushButtonAddContact.clicked.connect(add_contact)
 
 
 def del_contact():
     try:
         """Удаление контакта"""
         # получаем выбранный элемент в QListWidget
-        current_item = window.listWidgetContacts.currentItem()
+        current_item = ui.listWidgetContacts.currentItem()
         # получаем текст - это имя нашего контакта
         username = current_item.text()
         # удаление контакта (отправляем запрос на сервер)
         client.del_contact(username)
         # удаляем контакт из QListWidget
-        current_item = window.listWidgetContacts.takeItem(window.listWidgetContacts.row(current_item))
+        current_item = ui.listWidgetContacts.takeItem(ui.listWidgetContacts.row(current_item))
         del current_item
     except Exception as e:
         print(e)
@@ -119,39 +122,39 @@ def del_contact():
 
 def send_message():
     """Отправка сообщения"""
-    text = window.textEditMessage.toPlainText()
+    text = ui.textEditMessage.toPlainText()
     if text:
         # получаем выделенного пользователя
-        selected_index = window.listWidgetContacts.currentIndex()
+        selected_index = ui.listWidgetContacts.currentIndex()
         # получаем имя пользователя
         user_name = selected_index.data()
         # отправляем сообщение
         client.send_message(user_name, text)
         # будем выводить то что мы отправили в общем чате
         msg = 'You >>> {} : {}'.format(user_name, text)
-        window.listWidgetMessages.addItem(msg)
-        window.textEditMessage.clear()
+        ui.listWidgetMessages.addItem(msg)
+        ui.textEditMessage.clear()
 
 
 # связываем кнопку send с функцией отправки
-window.PushButtonSend.clicked.connect(send_message)
+ui.PushButtonSend.clicked.connect(send_message)
 
 def clean_workspace():
     """Очистка окна текущего чата"""
     history()
-    window.listWidgetMessages.clear()
+    ui.listWidgetMessages.clear()
 
 
 # При нажатии на имя контакта в списке контактов сообщения из окна текущего чата переносятся в окно history
-window.listWidgetContacts.itemClicked.connect(clean_workspace)
+ui.listWidgetContacts.itemClicked.connect(clean_workspace)
 
 # Удаление контакта из списка вызывается через контекстное меню
 # При нажатии правой кнопкой мыши на контакте появляется кнопка Remove
-window.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
-window.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
+ui.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
+ui.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
 removeAction = QtWidgets.QAction("Remove", None)
 removeAction.triggered.connect(del_contact)
-window.listWidgetContacts.addAction(removeAction)
+ui.listWidgetContacts.addAction(removeAction)
 
 
 
