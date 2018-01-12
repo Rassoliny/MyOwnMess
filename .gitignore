@@ -4,3 +4,4 @@ server.db
 build
 dist
 myownmessenger.egg-info
+myownmessenger_test.egg-info
