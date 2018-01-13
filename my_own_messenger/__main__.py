@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt, QThread, pyqtSlot
 import subprocess
 import sys
-import my_own_auth.login_page as login_page
+import my_own_messenger.login_page as login_page
 
 
 
