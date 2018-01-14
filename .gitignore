@@ -5,3 +5,5 @@ build
 dist
 myownmessenger.egg-info
 myownmessenger_test.egg-info
+client_view_.py
+client_start_.py
