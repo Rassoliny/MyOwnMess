@@ -12,6 +12,27 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(646, 528)
+        MainWindow.setStyleSheet("\n"
+"QPushButton {\n"
+"    background-color: #39424f;\n"
+"    border: 1px solid #39424f;\n"
+"    border-radius: 4px;\n"
+"    color: #fafafa;\n"
+"    padding: 8px 24px;\n"
+"\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #BBC7DA;\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: 1px solid #8699B5;\n"
+"    text-decoration: underline;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #8699B5;\n"
+"}\n"
+"")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
