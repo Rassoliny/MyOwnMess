@@ -35,17 +35,102 @@ class Ui_MainWindow(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet("\n"
+"\n"
+"QPushButton {\n"
+"    background-color: #39424f;\n"
+"    border: 1px solid #39424f;\n"
+"    border-radius: 4px;\n"
+"    color: #fafafa;\n"
+"    padding: 8px 24px;\n"
+"\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #BBC7DA;\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: 1px solid #8699B5;\n"
+"    text-decoration: underline;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #8699B5;\n"
+"}\n"
+"\n"
+"QListWidget {\n"
+"    border: none;\n"
+"}\n"
+"QListWidget QWidget {\n"
+"    margin: 0;\n"
+"    padding: 0;\n"
+"}\n"
+"\n"
+"QListWidget QPushButton {\n"
+"    width: 16px;\n"
+"    height: 16px;\n"
+"    margin: 0;\n"
+"    padding: 3px;\n"
+"    background-color: #fff;\n"
+"    border: none;\n"
+"    color: orange;\n"
+"}\n"
+"QListWidget QPushButton:hover {\n"
+"    background-color: orange;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QTextEdit {\n"
+"        border: 1px solid #8699B5;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"QTextEdit:focus {\n"
+"    border: 3px solid #8699B5;\n"
+"}\n"
+"\n"
+"QListView::item:alternate {\n"
+"    background: #EEEEEE;\n"
+"}\n"
+"\n"
+"QListView::item:selected {\n"
+"    border: 1px solid #8699B5;\n"
+"    color: #000;\n"
+"    font-weight: 800;\n"
+"    background-color: #fff;\n"
+"}\n"
+"\n"
+"QListView::item:selected:!active {\n"
+"    border: 1px solid lightgrey;\n"
+"}\n"
+"\n"
+"QListView::item:hover {\n"
+"    border: 1px solid lightgrey;\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    border: 1px solid #66BB6A;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
+"QLineEdit[echoMode=\"2\"] {\n"
+"    lineedit-password-character: 9679;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #8699B5;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setGeometry(QtCore.QRect(460, 300, 151, 111))
         self.groupBox.setAlignment(QtCore.Qt.AlignCenter)
+        self.groupBox.setFlat(True)
         self.groupBox.setObjectName("groupBox")
         self.textEditUsername = QtWidgets.QTextEdit(self.groupBox)
         self.textEditUsername.setGeometry(QtCore.QRect(10, 30, 131, 31))
+        self.textEditUsername.setAcceptRichText(True)
         self.textEditUsername.setObjectName("textEditUsername")
         self.pushButtonAddContact = QtWidgets.QPushButton(self.groupBox)
-        self.pushButtonAddContact.setGeometry(QtCore.QRect(50, 70, 51, 31))
+        self.pushButtonAddContact.setGeometry(QtCore.QRect(40, 70, 81, 31))
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("../../../../../Downloads/icons8-plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonAddContact.setIcon(icon1)
@@ -53,7 +138,7 @@ class Ui_MainWindow(object):
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(460, 20, 151, 271))
         self.groupBox_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.groupBox_2.setFlat(False)
+        self.groupBox_2.setFlat(True)
         self.groupBox_2.setCheckable(False)
         self.groupBox_2.setObjectName("groupBox_2")
         self.listWidgetContacts = QtWidgets.QListWidget(self.groupBox_2)
@@ -61,15 +146,18 @@ class Ui_MainWindow(object):
         self.listWidgetContacts.setObjectName("listWidgetContacts")
         self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_3.setGeometry(QtCore.QRect(40, 20, 391, 151))
+        self.groupBox_3.setFlat(True)
         self.groupBox_3.setObjectName("groupBox_3")
         self.listWidgetMessages = QtWidgets.QListWidget(self.groupBox_3)
         self.listWidgetMessages.setGeometry(QtCore.QRect(10, 30, 371, 111))
         self.listWidgetMessages.setObjectName("listWidgetMessages")
         self.groupBox_4 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_4.setGeometry(QtCore.QRect(40, 400, 391, 91))
+        self.groupBox_4.setFlat(True)
         self.groupBox_4.setObjectName("groupBox_4")
         self.textEditMessage = QtWidgets.QTextEdit(self.groupBox_4)
         self.textEditMessage.setGeometry(QtCore.QRect(10, 30, 371, 51))
+        self.textEditMessage.setLineWidth(1)
         self.textEditMessage.setObjectName("textEditMessage")
         self.groupBox_5 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_5.setGeometry(QtCore.QRect(480, 430, 121, 51))
@@ -81,6 +169,7 @@ class Ui_MainWindow(object):
         self.PushButtonSend.setObjectName("PushButtonSend")
         self.groupBox_6 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_6.setGeometry(QtCore.QRect(40, 190, 391, 191))
+        self.groupBox_6.setFlat(True)
         self.groupBox_6.setObjectName("groupBox_6")
         self.listWidgetHistory = QtWidgets.QListWidget(self.groupBox_6)
         self.listWidgetHistory.setGeometry(QtCore.QRect(10, 30, 371, 151))
