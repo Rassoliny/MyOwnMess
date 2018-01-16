@@ -1,5 +1,8 @@
 import sys
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import (QMainWindow, QTextEdit, QLabel,
+    QAction, QFileDialog, QApplication)
+from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QThread, pyqtSlot
 import my_own_client.client_view as client_view
 from my_own_client.client import User
@@ -41,6 +44,15 @@ def main():
     removeAction.triggered.connect(del_contact)
     ui.listWidgetContacts.addAction(removeAction)
 
+    # Добавляем меню для смены аватара
+    openFile = QAction(QIcon('open.png'), 'Open')
+    openFile.setShortcut('Ctrl+O')
+    openFile.setStatusTip('Открыть файл')
+    openFile.triggered.connect(avatar_change)
+    menubar = ui.menuBar()
+    fileMenu = menubar.addMenu('Файл')
+    fileMenu.addAction(openFile)
+
     # рисуем окно
     window.show()
     # точка запуска приложения
@@ -73,6 +85,14 @@ def history():
     except Exception as e:
         print(e)
         
+
+def avatar_change():
+    """смена аватара"""
+    fname = QFileDialog.getOpenFileName(ui, 'Open file', '/home')[0]
+    pixmap = QPixmap(fname)
+    ui.labelAvatar.resize(60,60)
+    ui.labelAvatar.setPixmap(pixmap)
+
 
 def load_contacts(contacts):
     """Загрузка списка контактов"""
