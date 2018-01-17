@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.9
 #
 # WARNING! All changes made in this file will be lost!
-
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
@@ -38,7 +38,8 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(140, 20, 371, 191))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("MyOwn.png"))
+        parent_dir_name = (os.path.dirname(os.path.realpath(__file__))+'/')
+        self.label.setPixmap(QtGui.QPixmap("{}MyOwn.png".format(parent_dir_name)))
         self.label.setObjectName("label")
         self.PasswordPlainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.PasswordPlainTextEdit.setGeometry(QtCore.QRect(180, 327, 311, 71))

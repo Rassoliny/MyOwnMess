@@ -2,7 +2,9 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt, QThread, pyqtSlot
 import subprocess
 import sys
+import os
 import my_own_messenger.login_page as login_page
+
 
 
 
@@ -19,7 +21,8 @@ def authentification():
     login = ui.LoginPlainTextEdit.toPlainText()
     password = ui.PasswordPlainTextEdit.toPlainText()
     print(login, password)
-    subprocess.Popen('python3.6 -m my_own_client localhost 7777 {}'.format(login), shell=True)
+    current_path = os.path.join(parent_dir_name, 'my_own_client/')
+    subprocess.Popen('python3.6 {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)
     exit(0)
     return (login, password)
 
@@ -27,6 +30,9 @@ def authentification():
 
 if __name__ == "__main__":
     # Создаем приложение
+    parent_dir_name = (os.path.dirname(os.path.realpath(__file__))+'/')
+    print('PATH={}'.format(parent_dir_name))
+   
     appl = QtWidgets.QApplication(sys.argv)
     # Запускаем форму аутентификаци
     login_window = QtWidgets.QMainWindow()
