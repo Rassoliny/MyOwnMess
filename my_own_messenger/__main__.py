@@ -22,7 +22,10 @@ def authentification():
     password = ui.PasswordPlainTextEdit.toPlainText()
     print(login, password)
     current_path = os.path.join(parent_dir_name, 'my_own_client/')
-    subprocess.Popen('python3.6 {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)
+    if platform == 'win32':
+        subprocess.Popen('python {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)
+    else:
+        subprocess.Popen('python3.6 {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)    
     exit(0)
     return (login, password)
 
@@ -30,6 +33,7 @@ def authentification():
 
 if __name__ == "__main__":
     # Создаем приложение
+    platform = sys.platform
     parent_dir_name = (os.path.dirname(os.path.realpath(__file__))+'/')
     print('PATH={}'.format(parent_dir_name))
    
