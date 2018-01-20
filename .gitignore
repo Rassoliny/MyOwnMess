@@ -7,3 +7,8 @@ myownmessenger.egg-info
 myownmessenger_test.egg-info
 client_view_.py
 client_start_.py
+misc.xml
+modules.xml
+MyOwnMess.iml
+workspace.xml
+server.log.2018-01-17
