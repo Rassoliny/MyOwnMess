@@ -173,8 +173,53 @@ window.labelAvatar.resize(80,80)
 window.pushButtonChangeAvatar.clicked.connect(change_avatar)
 
 
+def actionSmile():
+    url = 'ab.gif'
+    window.textEditMessage.setHtml('<img src="%s" />' % url)
 
 
+def actionMelancholy():
+    url = 'ac.gif'
+    window.textEditMessage.setHtml('<img src="%s" />' % url)
+
+
+def actionSurprise():
+    url = 'ai.gif'
+    window.textEditMessage.setHtml('<img src="%s" />' % url)
+
+
+# smile = QAction(QIcon('ab.gif'),'Smile', window)
+# smile.triggered.connect(actionSmile)
+# melancholy = QAction(QIcon('ac.gif'), 'Melancholy', window)
+# melancholy.triggered.connect(actionMelancholy)
+# surprise = QAction(QIcon('ai.gif'), 'Surprise', window)
+# surprise.triggered.connect(actionSurprise)
+# toolbar = window.addToolBar('Formatting')
+# toolbar.addAction(smile)
+# toolbar.addAction(melancholy)
+# toolbar.addAction(surprise)
+
+# Связи кнопок смайлов с их использованием
+window.pushButtonSmile.clicked.connect(actionSmile)
+window.pushButtonMelancholy.clicked.connect(actionMelancholy)
+window.pushButtonSurprise.clicked.connect(actionSurprise)
+
+
+def actionFormat(tag):
+    text = window.textEditMessage.textCursor().selectedText()
+    window.textEditMessage.textCursor().insertHtml('<{0}>{1}</{0}>'.format(tag, text))
+
+
+# bold = QAction(QIcon('b.jpg'),'Bold', self)
+# bold.triggered.connect(lambda: actionFormat('b'))
+# italic = QAction(QIcon('i.jpg'), 'Italic', self)
+# italic.triggered.connect(lambda: actionFormat('i'))
+# underlined = QAction(QIcon('u.jpg'), 'Underlined', self)
+# underlined.triggered.connect(lambda: actionFormat('u'))
+
+window.pushButtonBold.clicked.connect((lambda: actionFormat('b')))
+window.pushButtonItalics.clicked.connect(lambda: actionFormat('i'))
+window.pushButtonUnderline.clicked.connect(lambda: actionFormat('u'))
 
 
 
