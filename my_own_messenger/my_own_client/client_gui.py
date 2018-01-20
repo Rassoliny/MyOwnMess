@@ -1,7 +1,10 @@
 import sys
 import os
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import (QMainWindow, QTextEdit, QLabel,
+    QAction, QFileDialog, QApplication)
 from PyQt5.QtCore import Qt, QThread, pyqtSlot
+from PyQt5.QtGui import QPixmap, QIcon
 from client import User
 from handlers import GuiReciever
 
@@ -156,6 +159,21 @@ window.listWidgetContacts.setContextMenuPolicy(Qt.ActionsContextMenu)
 removeAction = QtWidgets.QAction("Remove", None)
 removeAction.triggered.connect(del_contact)
 window.listWidgetContacts.addAction(removeAction)
+
+
+def change_avatar():
+    """Изменение аватара"""
+    fname = QFileDialog.getOpenFileName(window, 'Open file', '/home1')[0]
+    pixmap = QPixmap(fname)
+    window.labelAvatar.setPixmap(pixmap)
+
+
+## Обновление аватара
+window.labelAvatar.resize(80,80)
+window.pushButtonChangeAvatar.clicked.connect(change_avatar)
+
+
+
 
 
 

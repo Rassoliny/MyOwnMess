@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
-    <height>553</height>
+    <width>653</width>
+    <height>653</height>
    </rect>
   </property>
   <property name="palette">
@@ -77,6 +77,10 @@
   <property name="windowTitle">
    <string>MyOwnMessenger</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.ico</normaloff>icon.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">
 QPushButton {
@@ -84,7 +88,6 @@ QPushButton {
 	border: 1px solid #39424f;
 	border-radius: 4px;
 	color: #fafafa;
-	padding: 8px 24px;
 
 }
 QPushButton:hover {
@@ -111,7 +114,6 @@ QListWidget QPushButton {
 	width: 16px;
 	height: 16px;
 	margin: 0;
-	padding: 3px;
 	background-color: #fff;
 	border: none;
 	color: orange;
@@ -124,7 +126,6 @@ QListWidget QPushButton:hover {
 QTextEdit {
 		border: 1px solid #8699B5;
 	border-radius: 4px;
-	padding-left: 5px;
 }
 QTextEdit:focus {
 	border: 3px solid #8699B5;
@@ -152,7 +153,6 @@ QListView::item:hover {
 QLineEdit {
 	border: 1px solid #66BB6A;
 	border-radius: 4px;
-	padding: 7px 5px;
 }
 
 QLineEdit[echoMode=&quot;2&quot;] {
@@ -162,17 +162,13 @@ QLineEdit[echoMode=&quot;2&quot;] {
 QLineEdit:focus {
 	border: 2px solid #8699B5;
 }</string>
-</property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>icon.ico</normaloff>icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>300</y>
+      <y>400</y>
       <width>151</width>
       <height>111</height>
      </rect>
@@ -215,9 +211,9 @@ QLineEdit:focus {
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>20</y>
+      <y>140</y>
       <width>151</width>
-      <height>271</height>
+      <height>251</height>
      </rect>
     </property>
     <property name="title">
@@ -238,7 +234,7 @@ QLineEdit:focus {
        <x>10</x>
        <y>30</y>
        <width>131</width>
-       <height>231</height>
+       <height>211</height>
       </rect>
      </property>
     </widget>
@@ -246,10 +242,10 @@ QLineEdit:focus {
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>20</y>
+      <x>30</x>
+      <y>10</y>
       <width>391</width>
-      <height>151</height>
+      <height>251</height>
      </rect>
     </property>
     <property name="title">
@@ -261,7 +257,7 @@ QLineEdit:focus {
        <x>10</x>
        <y>30</y>
        <width>371</width>
-       <height>111</height>
+       <height>211</height>
       </rect>
      </property>
     </widget>
@@ -269,8 +265,8 @@ QLineEdit:focus {
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>400</y>
+      <x>30</x>
+      <y>500</y>
       <width>391</width>
       <height>91</height>
      </rect>
@@ -293,7 +289,7 @@ QLineEdit:focus {
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>430</y>
+      <y>530</y>
       <width>121</width>
       <height>51</height>
      </rect>
@@ -322,10 +318,10 @@ QLineEdit:focus {
    <widget class="QGroupBox" name="groupBox_6">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>190</y>
+      <x>30</x>
+      <y>270</y>
       <width>391</width>
-      <height>191</height>
+      <height>221</height>
      </rect>
     </property>
     <property name="title">
@@ -337,10 +333,78 @@ QLineEdit:focus {
        <x>10</x>
        <y>30</y>
        <width>371</width>
-       <height>151</height>
+       <height>181</height>
       </rect>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="labelAvatar">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>10</y>
+      <width>80</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>80</width>
+      <height>80</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>80</width>
+      <height>80</height>
+     </size>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>generic-avatar.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="indent">
+     <number>-1</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonChangeAvatar">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>110</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change Avatar</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -348,8 +412,8 @@ QLineEdit:focus {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>643</width>
-     <height>25</height>
+     <width>653</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

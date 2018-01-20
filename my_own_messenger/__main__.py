@@ -25,7 +25,7 @@ def authentification():
     if platform == 'win32':
         subprocess.Popen('python {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)
     else:
-        subprocess.Popen('python3.6 {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)    
+        subprocess.Popen('python3.6 {}client_gui.py localhost 7777 {}'.format(current_path, login), shell=True)     
     exit(0)
     return (login, password)
 
