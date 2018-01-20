@@ -174,17 +174,17 @@ window.pushButtonChangeAvatar.clicked.connect(change_avatar)
 
 
 def actionSmile():
-    url = 'ab.gif'
+    url = '{}ab.gif'.format(current_path)
     window.textEditMessage.setHtml('<img src="%s" />' % url)
 
 
 def actionMelancholy():
-    url = 'ac.gif'
+    url = '{}ac.gif'.format(current_path)
     window.textEditMessage.setHtml('<img src="%s" />' % url)
 
 
 def actionSurprise():
-    url = 'ai.gif'
+    url = '{}ai.gif'.format(current_path)
     window.textEditMessage.setHtml('<img src="%s" />' % url)
 
 
