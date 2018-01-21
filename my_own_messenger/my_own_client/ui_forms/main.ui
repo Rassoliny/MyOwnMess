@@ -245,7 +245,7 @@ QLineEdit:focus {
       <x>30</x>
       <y>10</y>
       <width>391</width>
-      <height>251</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="title">
@@ -254,24 +254,26 @@ QLineEdit:focus {
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QListWidget" name="listWidgetMessages">
+    <widget class="QTextEdit" name="textEditChat">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>30</y>
        <width>371</width>
-       <height>211</height>
+       <height>171</height>
       </rect>
      </property>
     </widget>
+    <zorder>textEditChat</zorder>
+    <zorder>textEditChat</zorder>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>470</y>
+      <y>460</y>
       <width>391</width>
-      <height>121</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -281,7 +283,7 @@ QLineEdit:focus {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>70</y>
        <width>371</width>
        <height>51</height>
       </rect>
@@ -291,7 +293,7 @@ QLineEdit:focus {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>30</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -301,14 +303,14 @@ QLineEdit:focus {
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../b.jpg</normaloff>../b.jpg</iconset>
+       <normaloff>b.jpg</normaloff>b.jpg</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButtonItalics">
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>20</y>
+       <y>30</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -318,14 +320,14 @@ QLineEdit:focus {
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../i.jpg</normaloff>../i.jpg</iconset>
+       <normaloff>i.jpg</normaloff>i.jpg</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButtonUnderline">
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>20</y>
+       <y>30</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -335,14 +337,14 @@ QLineEdit:focus {
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../u.jpg</normaloff>../u.jpg</iconset>
+       <normaloff>u.jpg</normaloff>u.jpg</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButtonSmile">
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>20</y>
+       <y>30</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -352,14 +354,14 @@ QLineEdit:focus {
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../ab.gif</normaloff>../ab.gif</iconset>
+       <normaloff>ab.gif</normaloff>ab.gif</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButtonMelancholy">
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>20</y>
+       <y>30</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -369,14 +371,14 @@ QLineEdit:focus {
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../ac.gif</normaloff>../ac.gif</iconset>
+       <normaloff>ac.gif</normaloff>ac.gif</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButtonSurprise">
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>20</y>
+       <y>30</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -386,7 +388,7 @@ QLineEdit:focus {
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../ai.gif</normaloff>../ai.gif</iconset>
+       <normaloff>ai.gif</normaloff>ai.gif</iconset>
      </property>
     </widget>
    </widget>
@@ -424,21 +426,21 @@ QLineEdit:focus {
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>270</y>
+      <y>220</y>
       <width>391</width>
-      <height>181</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="title">
      <string>History</string>
     </property>
-    <widget class="QListWidget" name="listWidgetHistory">
+    <widget class="QTextEdit" name="textEditHistory">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>28</y>
        <width>371</width>
-       <height>141</height>
+       <height>191</height>
       </rect>
      </property>
     </widget>

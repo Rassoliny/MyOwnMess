@@ -45,24 +45,13 @@ def update_chat(data):
     """Отображение текущего чата"""
     try:
         msg = data
-        window.listWidgetMessages.addItem(msg)
+        # window.listWidgetMessages.addItem(msg)
+        # window.listWidgetHistory.addItem(msg)
+        window.textEditChat.insertHtml('{}<br>'.format(msg))
+        window.textEditHistory.insertHtml('{}<br>'.format(msg))
     except Exception as e:
         print(e)
 
-
-def history():
-    """Перенос текущего чата в окно истории"""
-    try:
-        c = str(window.listWidgetMessages.count())
-        s = int(c)
-        for i in range (0, s + 1):
-            a = window.listWidgetMessages.takeItem(i)
-            window.listWidgetHistory.addItem(a)
-            a = window.listWidgetMessages.takeItem(i+1)
-            window.listWidgetHistory.addItem(a)
-    except Exception as e:
-        print(e)
-        
 
 # сигнал мы берем из нашего GuiReciever
 listener.gotData.connect(update_chat)
@@ -126,7 +115,7 @@ def del_contact():
 
 def send_message():
     """Отправка сообщения"""
-    text = window.textEditMessage.toPlainText()
+    text = window.textEditMessage.toHtml()
     if text:
         # получаем выделенного пользователя
         selected_index = window.listWidgetContacts.currentIndex()
@@ -136,7 +125,8 @@ def send_message():
         client.send_message(user_name, text)
         # будем выводить то что мы отправили в общем чате
         msg = 'You >>> {} : {}'.format(user_name, text)
-        window.listWidgetMessages.addItem(msg)
+        window.textEditChat.insertHtml('{}<br>'.format(msg))
+        window.textEditHistory.insertHtml('{}<br>'.format(msg))
         window.textEditMessage.clear()
 
 
@@ -145,13 +135,13 @@ window.PushButtonSend.clicked.connect(send_message)
 
 def clean_workspace():
     """Очистка окна текущего чата"""
-    history()
-    window.listWidgetMessages.clear()
+    # window.listWidgetMessages.clear()
+    window.textEditChat.clear()
 
 
-# При нажатии на имя контакта в списке контактов сообщения из окна текущего чата переносятся в окно history
+#При нажатии на имя контакта в списке контактов окно текущего чата очищается
 window.listWidgetContacts.itemClicked.connect(clean_workspace)
-
+#
 # Удаление контакта из списка вызывается через контекстное меню
 # При нажатии правой кнопкой мыши на контакте появляется кнопка Remove
 window.listWidgetContacts.setContextMenuPolicy(Qt.CustomContextMenu)
