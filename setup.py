@@ -2,7 +2,7 @@ from setuptools import setup
 from glob import glob
  
 setup(name = "myownmessenger_test",
-      version = "0.1.3",
+      version = "0.1.4",
       description = "My first messenger",
       include_package_data=True,
       author = "Rassoliny",
