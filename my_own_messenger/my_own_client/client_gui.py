@@ -165,17 +165,17 @@ window.pushButtonChangeAvatar.clicked.connect(change_avatar)
 
 def actionSmile():
     url = '{}ab.gif'.format(current_path)
-    window.textEditMessage.setHtml('<img src="%s" />' % url)
+    window.textEditMessage.insertHtml('<img src="%s" />' % url)
 
 
 def actionMelancholy():
     url = '{}ac.gif'.format(current_path)
-    window.textEditMessage.setHtml('<img src="%s" />' % url)
+    window.textEditMessage.insertHtml('<img src="%s" />' % url)
 
 
 def actionSurprise():
     url = '{}ai.gif'.format(current_path)
-    window.textEditMessage.setHtml('<img src="%s" />' % url)
+    window.textEditMessage.insertHtml('<img src="%s" />' % url)
 
 
 # smile = QAction(QIcon('ab.gif'),'Smile', window)
