@@ -34,6 +34,9 @@ print('PATH!!!!!!!!!{}'.format(current_path))
 app = QtWidgets.QApplication(sys.argv)
 # грузим главную форму
 window = uic.loadUi('{}main.ui'.format(current_path))
+""" Показать окно создания нового чата """
+chat_dialog = uic.loadUi('{}new_chat.ui'.format(current_path))
+
 # создаем клиента на запись
 client = User(name, addr, port)
 # получаем список контактов с сервера, которые лежат у нас - не надежные
@@ -193,6 +196,43 @@ def actionFormat(tag):
 window.pushButtonBold.clicked.connect((lambda: actionFormat('b')))
 window.pushButtonItalics.clicked.connect(lambda: actionFormat('i'))
 window.pushButtonUnderline.clicked.connect(lambda: actionFormat('u'))
+
+
+def chat_add_contact():
+    try:
+        """Добавление контакта в чат"""
+        # получаем выбранный элемент в QListWidget
+        current_item = chat_dialog.listWidgetYourContacts.currentItem()
+        chat_dialog.listWidgetChatList.addItem(current_item)
+    except Exception as e:
+        print(e)
+
+
+
+def chat_remove_contact():
+    try:
+        """Удаление контакта из чата"""
+        # получаем выбранный элемент в QListWidget
+        current_item = chat_dialog.listWidgetChatList.currentItem()
+        # удаляем контакт из QListWidget
+        current_item = chat_dialog.listWidgetChatList.takeItem(window.listWidgetContacts.row(current_item))
+        del current_item
+    except Exception as e:
+        print(e)
+
+
+
+def show_newchat_dialog():
+    # добавляем контакты
+    for contact in contact_list:
+        chat_dialog.listWidgetYourContacts.addItem(contact)
+
+    chat_dialog.pushButtonAdd.clicked.connect(chat_add_contact)
+    chat_dialog.pushButtonRemove.clicked.connect(chat_remove_contact)
+    chat_dialog.exec_()
+
+
+window.pushButtonGroupChat.clicked.connect(show_newchat_dialog)
 
 
 

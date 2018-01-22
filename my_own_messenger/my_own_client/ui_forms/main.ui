@@ -192,7 +192,7 @@ QLineEdit:focus {
     <widget class="QPushButton" name="pushButtonAddContact">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>20</x>
        <y>70</y>
        <width>51</width>
        <height>31</height>
@@ -204,6 +204,19 @@ QLineEdit:focus {
      <property name="icon">
       <iconset>
        <normaloff>../../../../../Downloads/icons8-plus.png</normaloff>../../../../../Downloads/icons8-plus.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonGroupChat">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>70</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Chat</string>
      </property>
     </widget>
    </widget>
@@ -264,8 +277,6 @@ QLineEdit:focus {
       </rect>
      </property>
     </widget>
-    <zorder>textEditChat</zorder>
-    <zorder>textEditChat</zorder>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
