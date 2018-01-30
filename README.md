@@ -1,9 +1,10 @@
 # MyOwnMess
 My first messenger
 
-This is my first messenger, so do not swear at me very much.
+This is my first python project, so do not swear at me very much.
 
-It’s 0.1 version, pictures and smile will be in next version.
+It’s 0.1 version.
+Group chat still not working, but it will be in nearest release.
 
 
 
@@ -11,7 +12,7 @@ Installation:
 ------------
 it's test version of messenger
 
-pip install myownmessenger
+ - pip install myownmessenger
 
 
 
