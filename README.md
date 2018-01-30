@@ -11,17 +11,17 @@ Installation:
 ------------
 it's test version of messenger
 
-pip3 install --index-url https://test.pypi.org/simple/ myownmessenger-test
+pip install myownmessenger
 
 
 
 Launch:
 -------
-Запуск сервера:
-python3.6 -m my_own_server
+Write command:
+ - MyOwnServer
 
-Запуск клиента:
-python3.6 -m my_own_messenger
+Write command:
+ - MyOwnMessenger
 
 
 
