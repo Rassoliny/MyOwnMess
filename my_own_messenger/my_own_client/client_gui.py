@@ -28,12 +28,15 @@ except IndexError:
         print(params)
 
 # Создаем приложение
+# Для отображения изображений получаем текущую директорию
 parent_dir_name = (os.path.dirname(os.path.realpath(__file__))+'/')
 current_path = os.path.join(parent_dir_name, 'ui_forms/')
-print('PATH!!!!!!!!!{}'.format(current_path))
 app = QtWidgets.QApplication(sys.argv)
 # грузим главную форму
 window = uic.loadUi('{}main.ui'.format(current_path))
+""" Показать окно создания нового чата """
+chat_dialog = uic.loadUi('{}new_chat.ui'.format(current_path))
+
 # создаем клиента на запись
 client = User(name, addr, port)
 # получаем список контактов с сервера, которые лежат у нас - не надежные
@@ -45,8 +48,6 @@ def update_chat(data):
     """Отображение текущего чата"""
     try:
         msg = data
-        # window.listWidgetMessages.addItem(msg)
-        # window.listWidgetHistory.addItem(msg)
         window.textEditChat.insertHtml('{}<br>'.format(msg))
         window.textEditHistory.insertHtml('{}<br>'.format(msg))
     except Exception as e:
@@ -195,6 +196,59 @@ window.pushButtonItalics.clicked.connect(lambda: actionFormat('i'))
 window.pushButtonUnderline.clicked.connect(lambda: actionFormat('u'))
 
 
+def chat_add_contact():
+    try:
+        """Добавление контакта в чат"""
+        # получаем выбранный элемент в QListWidget
+        current_item = chat_dialog.listWidgetYourContacts.currentItem()
+        current_item = chat_dialog.listWidgetYourContacts.takeItem(chat_dialog.listWidgetYourContacts.row(current_item))
+        chat_dialog.listWidgetChatList.addItem(current_item)
+    except Exception as e:
+        print(e)
+
+
+
+def chat_remove_contact():
+    try:
+        """Удаление контакта из чата"""
+        current_item = chat_dialog.listWidgetChatList.currentItem()
+        current_item = chat_dialog.listWidgetChatList.takeItem(chat_dialog.listWidgetChatList.row(current_item))
+        chat_dialog.listWidgetYourContacts.addItem(current_item)
+    except Exception as e:
+        print(e)
+
+
+
+def show_newchat_dialog():
+    # обнуляем списки диалога
+    chat_dialog.listWidgetYourContacts.clear()
+    chat_dialog.listWidgetChatList.clear()
+
+    # добавляем контакты
+    for contact in contact_list:
+        chat_dialog.listWidgetYourContacts.addItem(contact)
+
+    chat_dialog.exec_()
+
+
+def make_chat():
+    try:
+        """Создание чата, пока не реализованно (создается просто клиент)"""
+        chat_name = chat_dialog.textEditChatName.toPlainText()
+        if chat_name:
+            # добавляем контакт - шлем запрос на сервер ...
+            client.add_contact(chat_name)
+            # добавляем имя в QListWidget
+            window.listWidgetContacts.addItem(chat_name)
+    except Exception as e:
+        print(e)
+
+# Связи кнопок создания чата со слотами
+window.pushButtonGroupChat.clicked.connect(show_newchat_dialog)
+chat_dialog.pushButtonAdd.clicked.connect(chat_add_contact)
+chat_dialog.pushButtonRemove.clicked.connect(chat_remove_contact)
+chat_dialog.buttonBox.clicked.connect(chat_remove_contact)
+chat_dialog.buttonBox.accepted.connect(make_chat)
 
 # рисуем окно
 window.show()

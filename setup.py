@@ -1,8 +1,8 @@
 from setuptools import setup
 from glob import glob
  
-setup(name = "myownmessenger_test",
-      version = "0.1.4",
+setup(name = "myownmessenger",
+      version = "0.1",
       description = "My first messenger",
       include_package_data=True,
       author = "Rassoliny",
@@ -19,4 +19,12 @@ setup(name = "myownmessenger_test",
       install_requires=[
             'PyQt5>=5.9', 'SQLAlchemy>=1.1.15'
       ],
-      )
+      entry_points={
+        'gui_scripts': [
+            'MyOwnMessenger = my_own_messenger.messenger:main',
+        ],
+        'console_scripts': [
+            'MyOwnServer = my_own_server.server:main',
+        ]
+    },
+    )
