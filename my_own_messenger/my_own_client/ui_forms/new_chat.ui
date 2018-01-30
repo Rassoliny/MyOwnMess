@@ -13,13 +13,95 @@
   <property name="windowTitle">
    <string>New Chat</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+QPushButton {
+	background-color: #39424f;
+	border: 1px solid #39424f;
+	border-radius: 4px;
+	color: #fafafa;
+
+}
+QPushButton:hover {
+	background-color: #BBC7DA;
+}
+QPushButton:focus {
+	outline: none;
+	border: 1px solid #8699B5;
+	text-decoration: underline;
+}
+QPushButton:pressed {
+	background-color: #8699B5;
+}
+
+QListWidget {
+	border: none;
+}
+QListWidget QWidget {
+	margin: 0;
+	padding: 0;
+}
+
+QListWidget QPushButton {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	background-color: #fff;
+	border: none;
+	color: orange;
+}
+QListWidget QPushButton:hover {
+	background-color: orange;
+	color: white;
+}
+
+QTextEdit {
+		border: 1px solid #8699B5;
+	border-radius: 4px;
+}
+QTextEdit:focus {
+	border: 3px solid #8699B5;
+}
+
+QListView::item:alternate {
+    background: #EEEEEE;
+}
+
+QListView::item:selected {
+    border: 1px solid #8699B5;
+	color: #000;
+	font-weight: 800;
+	background-color: #fff;
+}
+
+QListView::item:selected:!active {
+    border: 1px solid lightgrey;
+}
+
+QListView::item:hover {
+    border: 1px solid lightgrey;
+}
+
+QLineEdit {
+	border: 1px solid #66BB6A;
+	border-radius: 4px;
+}
+
+QLineEdit[echoMode=&quot;2&quot;] {
+    lineedit-password-character: 9679;
+}
+
+QLineEdit:focus {
+	border: 2px solid #8699B5;
+}</string>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>20</x>
      <y>420</y>
-     <width>161</width>
-     <height>32</height>
+     <width>211</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="orientation">
@@ -29,7 +111,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEditSearch">
+  <widget class="QTextEdit" name="textEditChatName">
    <property name="geometry">
     <rect>
      <x>20</x>

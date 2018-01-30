@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>646</width>
-    <height>528</height>
+    <height>535</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,12 +31,15 @@
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="PasswordPlainTextEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>327</y>
+      <y>310</y>
       <width>311</width>
-      <height>71</height>
+      <height>51</height>
      </rect>
     </property>
    </widget>
@@ -57,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>300</y>
+      <y>290</y>
       <width>68</width>
       <height>17</height>
      </rect>
@@ -70,9 +73,9 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>420</y>
-      <width>201</width>
-      <height>51</height>
+      <y>370</y>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -85,8 +88,38 @@
       <x>180</x>
       <y>220</y>
       <width>311</width>
-      <height>78</height>
+      <height>51</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEditServerAddress">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>460</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;localhost&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Address">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>460</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Server:</string>
     </property>
    </widget>
   </widget>
@@ -96,7 +129,7 @@
      <x>0</x>
      <y>0</y>
      <width>646</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

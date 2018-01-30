@@ -1,4 +1,9 @@
 import select
+import sys
+from .server import *
+from .handler import *
+from my_own_jim import *
+from my_own_logs import *
 from socket import socket, AF_INET, SOCK_STREAM
 from my_own_jim.utils import send_message, get_message
 from my_own_jim.config import *
@@ -21,6 +26,7 @@ class Server:
     def bind(self, addr, port):
         # запоминаем адрес и порт
         self.sock.bind((addr, port))
+        print('Server started on {}'.format(port))
 
     def listen_forever(self):
         # запускаем цикл обработки событиц много клиентов
@@ -58,3 +64,33 @@ class Server:
 
                 requests = self.handler.read_requests(r, self.clients)  # Получаем входные сообщения
                 self.handler.write_responses(requests, self.names, self.clients)  # Выполним отправку входящих сообщений
+
+
+
+###############################################################################
+def main():
+    #loop
+    try:
+        addr = sys.argv[1]
+    except IndexError:
+        addr = ''
+    try:
+        port = int(sys.argv[2])
+    except IndexError:
+        port = 7777
+    except ValueError:
+        print('Порт должен быть целым числом')
+        sys.exit(0)
+
+    handler = Handler()
+    server = Server(handler)
+    server.bind(addr, port)
+    server.listen_forever()
+
+
+
+###############################################################################
+#
+###############################################################################
+if __name__ == "__main__":
+    main()
